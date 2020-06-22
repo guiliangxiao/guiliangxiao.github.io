@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="因为Ubuntu20.04系统中装了Anaconda3，默认的python版本anaconda自带的Python3.7，坚果云安装和运行需要python2的环境，这篇文章记录了自己当时解决这个问题的过程。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu20.04安装坚果云的曲折之路">
+<meta property="og:url" content="http://yoursite.com/2020/03/25/Ubuntu20-04%E5%AE%89%E8%A3%85%E5%9D%9A%E6%9E%9C%E4%BA%91%E7%9A%84%E6%9B%B2%E6%8A%98%E4%B9%8B%E8%B7%AF/index.html">
+<meta property="og:site_name" content="GuiLiang&#39;s Blog">
+<meta property="og:description" content="因为Ubuntu20.04系统中装了Anaconda3，默认的python版本anaconda自带的Python3.7，坚果云安装和运行需要python2的环境，这篇文章记录了自己当时解决这个问题的过程。">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200325121955325.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h6eXl1bg==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200325125820205.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020032511093753.png">
+<meta property="article:published_time" content="2020-03-25T04:59:43.000Z">
+<meta property="article:modified_time" content="2020-06-22T12:01:08.308Z">
+<meta property="article:author" content="Xiao Guiliang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200325121955325.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h6eXl1bg==,size_16,color_FFFFFF,t_70">
+
+<link rel="canonical" href="http://yoursite.com/2020/03/25/Ubuntu20-04%E5%AE%89%E8%A3%85%E5%9D%9A%E6%9E%9C%E4%BA%91%E7%9A%84%E6%9B%B2%E6%8A%98%E4%B9%8B%E8%B7%AF/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-Hans'
+  };
+</script>
+
+  <title>Ubuntu20.04安装坚果云的曲折之路 | GuiLiang's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">GuiLiang's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/25/Ubuntu20-04%E5%AE%89%E8%A3%85%E5%9D%9A%E6%9E%9C%E4%BA%91%E7%9A%84%E6%9B%B2%E6%8A%98%E4%B9%8B%E8%B7%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/head.jpg">
+      <meta itemprop="name" content="Xiao Guiliang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GuiLiang's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Ubuntu20.04安装坚果云的曲折之路
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-25 12:59:43" itemprop="dateCreated datePublished" datetime="2020-03-25T12:59:43+08:00">2020-03-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-22 20:01:08" itemprop="dateModified" datetime="2020-06-22T20:01:08+08:00">2020-06-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Ubuntu/" itemprop="url" rel="index"><span itemprop="name">Ubuntu</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>因为<code>Ubuntu20.04</code>系统中装了<code>Anaconda3</code>，默认的python版本anaconda自带的<code>Python3.7</code>，坚果云安装和运行需要<code>python2</code>的环境，这篇文章记录了自己当时解决这个问题的过程。</p>
+<a id="more"></a>
+
+<h2 id="记录一下"><a href="#记录一下" class="headerlink" title="记录一下"></a>记录一下</h2><ul>
+<li>我在安装的时候试了下<a href="https://blog.csdn.net/White_Idiot/article/details/78240298" target="_blank" rel="noopener">这篇博文</a>中==基于update-alternatives==的方法。首先把<code>/usr/bin/python2.7</code>和<code>~/opt/anaconda3/bin/python3.7</code>两个python版本添加到<code>update-alternatives</code>命令中去，至于ubuntu系统自带的<code>Python3</code>（位于<code>/usr/bin/python3.8</code>）添不添加我觉得关系不大。</li>
+<li>添加完成之后用命令<code>update-alternatives --config python</code>把系统默认的python版本切换到<code>python2</code>，然后奇怪的事情就是默认的python还是Python3，没换到我想要的python2版本，然后后面每次一打开终端都会出现一个<code>ImportError:No module named conda.cli</code>，运行conda也是<code>未发现命令</code></li>
+<li>谷歌一下，上面的ImportError应该是python版本不对的问题导致的，我猜应该是被我切换到了Ubuntu系统自带的Python3（当时应该可以用软连接的方法把python切换到python2的版本，当时没注意，也没想到），最后无奈只好用<code>sudo rm -r ~/opt/anaconda3</code>把anaconda卸载了。然后系统默认的python版本就回到了python2，如果还是python3的话可以用软连接的方法<code>sudo ln -s /usr/bin/python2.7 /usr/bin/python</code>把系统默认的python版本换成了Python2.7。</li>
+<li>然后通过<a href="https://www.jianguoyun.com/s/downloads/linux" target="_blank" rel="noopener">官方</a>的方法先下载deb包，然后用<code>sudo dpkg -i nautilus_nutstore_amd64.deb</code>和<code>sudo apt-get install -f</code>命令安装之后还是启动不了坚果云，后面看了下，是sudo apt-get install -f命令没有成功安装依赖包，然后是依赖怎么也安装不成功，现在想一下应该是Ubuntu系统版本太新的原因</li>
+<li>然后参考<a href="https://www.xitongjiaocheng.com/ubuntu/2018/61053.html" target="_blank" rel="noopener">这篇博文</a>的方法，换种方法安装</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载坚果云</span></span><br><span class="line">$ wget https://www.jianguoyun.com/static/exe/installer/nutstore_linux_dist_x86.tar.gz</span><br><span class="line"><span class="comment"># 制作目录~/.nutstore/dist，并把上面的包解压到新建的目录里</span></span><br><span class="line">$ mkdir -p ~/.nutstore/dist &amp;&amp; tar zxf nutstore_bin.tar.gz -C ~/.nutstore/dist</span><br><span class="line"><span class="comment"># 安装坚果云菜单和图标</span></span><br><span class="line">$ ~/.nutstore/dist/bin/install_core.sh</span><br></pre></td></tr></table></figure>
+<ul>
+<li>然后在运行<code>~/.nutstore/dist/bin/nutstore-pydaemon.py</code>语句时出现了一个错误，仔细看了下是运行的这个文件<code>nutstore-pydaemon.py</code>的第93行出现了一个返回值<code>Focal</code>不能转换成<code>float</code>的问题，这里的<code>Focal</code>是Ubuntu20.04版本号，估计还是版本兼容的问题，然后<code>gedit ~/.nutstore/dist/bin/nutstore-pydaemon.py</code>打开文件把代码改一下，找到出错的==第93行==把原来的<code>return float(ver) &gt;= 18.04</code>直接改成<code>return True</code>。<blockquote>
+<p>$ ~/.nutstore/dist/bin/nutstore-pydaemon.py<br>&gt;2020-03-23 16:52:40,437 [MainThread] <module> INFO: can’t import appindicator<br>&gt;2020-03-23 16:52:41,253 [MainThread] <module> ERROR: Cannot found expected file manager<br>&gt;Traceback (most recent call last):<br>File “/home/pers/.nutstore/dist/bin/nutstore-pydaemon.py”, line 78, in <module><br>out = subprocess.check_output([“nautilus”, “–version”])<br>File “/usr/lib/python2.7/subprocess.py”, line 223, in check_output<br>raise CalledProcessError(retcode, cmd, output=output)<br>&gt;CalledProcessError: Command ‘[‘nautilus’, ‘–version’]’ returned non-zero exit status -11<br>&gt;Traceback (most recent call last):<br>File “/home/pers/.nutstore/dist/bin/nutstore-pydaemon.py”, line 649, in <module><br>if is_ubuntu_18_or_later():IS_UBUNTU_18=True<br>File “/home/pers/.nutstore/dist/bin/nutstore-pydaemon.py”, <strong>line 93</strong>, in is_ubuntu_18_or_later<br>return float(ver) &gt;= 18.04<br>ValueError: could not convert string to float: Focal</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20200325121955325.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h6eXl1bg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<ul>
+<li>最后还是在这个文件里面把开头的python版本改成系统的python2版本，然后就可以愉快的使用anaconda3和坚果云了，不用担心默认版本不兼容的问题了，然后再把ananconda3重新安装上，具体ananconda3重新安装参考<a href="https://blog.csdn.net/hzyyun/article/details/104762709" target="_blank" rel="noopener">这篇文章</a></li>
+<li>后面我在装好anaconda3的时候我到目录<code>/usr/bin</code>里面用命令<code>ls -all</code>看了一下python指向的默认python版本竟然还是python2，但是我在终端里面运行python的默认版本却是python3，所以怀疑最先一开始通过改python默认版本的方法来安装坚果云是行不通的<br><img src="https://img-blog.csdnimg.cn/20200325125820205.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/2020032511093753.png" alt="在这里插入图片描述"><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2>[1] Ubuntu修改默认Python版本：<a href="https://blog.csdn.net/White_Idiot/article/details/78240298" target="_blank" rel="noopener">https://blog.csdn.net/White_Idiot/article/details/78240298</a><br>[2] Ubuntu 坚果云无法启动:<a href="https://blog.csdn.net/u012435142/article/details/85240356" target="_blank" rel="noopener">https://blog.csdn.net/u012435142/article/details/85240356</a><br>[3] Ubuntu14.04安装坚果云Nutstore:<a href="https://www.xitongjiaocheng.com/ubuntu/2018/61053.html" target="_blank" rel="noopener">https://www.xitongjiaocheng.com/ubuntu/2018/61053.html</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/09/06/windows%E4%B8%8Bvim-YouCompleteMe-clang3-9%E7%9A%84%E5%AE%89%E8%A3%85/" rel="prev" title="windows下vim+YouCompleteMe+clang3.9的安装">
+      <i class="fa fa-chevron-left"></i> windows下vim+YouCompleteMe+clang3.9的安装
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/26/Ubuntu%E5%AE%89%E8%A3%85f-lux%E4%BB%A5%E5%8F%8A%E5%90%88%E9%80%82%E7%9A%84%E9%85%8D%E7%BD%AE/" rel="next" title="Ubuntu安装f.lux以及合适的配置">
+      Ubuntu安装f.lux以及合适的配置 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#记录一下"><span class="nav-number">1.</span> <span class="nav-text">记录一下</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">2.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Xiao Guiliang"
+      src="/images/head.jpg">
+  <p class="site-author-name" itemprop="name">Xiao Guiliang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:glx@mail.ustc.edu.cn" title="E-Mail → mailto:glx@mail.ustc.edu.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/hzyyun" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;hzyyun" rel="noopener" target="_blank"><i class="fab fa-csdn fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://github.com/guiliangxiao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;guiliangxiao" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2015 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Xiao Guiliang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
