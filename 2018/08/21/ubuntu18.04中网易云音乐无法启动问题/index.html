@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-Hans">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.0">
@@ -78,12 +78,12 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -224,20 +224,20 @@
       
         <p>最近在用的Ubuntu系统，想听点音乐，装好网易云音乐之后打不开，自己动手解决下这个问题。</p>
 <a id="more"></a>
-
 <p>环境:</p>
 <p>ubuntu18.04</p>
 <p>最近在ubuntu上安装的网易云音乐启动不了，参考了网上一部分资料，加上了自己的整理</p>
-<ol>
+<ol style="list-style-type: decimal">
 <li>在Terninal中运行sudo apt install libcanberra-gtk-module安装libcanberra-gtk-mod</li>
 <li>运行sudo nano /usr/share/applications/netease-cloud-music.desktop</li>
-<li>将界面中Exec的值改成netease-cloud-music –no-standbox %U</li>
-<li>改好之后按ctrl+X退出界面<br><img src="https://img-blog.csdn.net/20180822104015916?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h6eXl1bg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="Click and drag to move"></li>
-<li>输入Y保存修改，回车确认保存退出<br><img src="https://img-blog.csdn.net/20180822105550762?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h6eXl1bg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="Click and drag to move"></li>
+<li>将界面中Exec的值改成netease-cloud-music --no-standbox %U</li>
+<li>改好之后按ctrl+X退出界面 <img src="https://img-blog.csdn.net/20180822104015916?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h6eXl1bg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img" /><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="Click and drag to move" /></li>
+<li>输入Y保存修改，回车确认保存退出<br />
+<img src="https://img-blog.csdn.net/20180822105550762?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h6eXl1bg==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img" /><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" alt="Click and drag to move" /></li>
 <li>重启之后就能启动网易云了</li>
 </ol>
 <p>另外一种启动的方法,刚开始装好网易云时不管用，后来过了一遍上面的配置，再把Exec的值改回 %U，点击网易云启动时再进入到关机页面，别点关机或重启，等一段时间网易云启动之后，点击取消，这种方法只能在其他应用都最小化时，单独启动网易云时有用，这种方法时灵时不灵的</p>
-<p>参考链接：<a href="https://ywnz.com/linuxjc/1474.html" target="_blank" rel="noopener">https://ywnz.com/linuxjc/1474.html</a></p>
+<p>参考链接：https://ywnz.com/linuxjc/1474.html</p>
 
     </div>
 
@@ -413,7 +413,7 @@
 <script src="/js/schemes/pisces.js"></script>
 
 
-<script src="/js/next-boot.js"></script>
+<script src="/js/next-boot.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 

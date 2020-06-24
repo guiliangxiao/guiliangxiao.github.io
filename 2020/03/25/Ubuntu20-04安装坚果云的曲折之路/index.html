@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-Hans">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.0">
@@ -77,12 +77,12 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -223,8 +223,8 @@
       
         <p>因为<code>Ubuntu20.04</code>系统中装了<code>Anaconda3</code>，默认的python版本anaconda自带的<code>Python3.7</code>，坚果云安装和运行需要<code>python2</code>的环境，这篇文章记录了自己当时解决这个问题的过程。</p>
 <a id="more"></a>
-
-<h2 id="记录一下"><a href="#记录一下" class="headerlink" title="记录一下"></a>记录一下</h2><ul>
+<h2 id="记录一下">记录一下</h2>
+<ul>
 <li>我在安装的时候试了下<a href="https://blog.csdn.net/White_Idiot/article/details/78240298" target="_blank" rel="noopener">这篇博文</a>中==基于update-alternatives==的方法。首先把<code>/usr/bin/python2.7</code>和<code>~/opt/anaconda3/bin/python3.7</code>两个python版本添加到<code>update-alternatives</code>命令中去，至于ubuntu系统自带的<code>Python3</code>（位于<code>/usr/bin/python3.8</code>）添不添加我觉得关系不大。</li>
 <li>添加完成之后用命令<code>update-alternatives --config python</code>把系统默认的python版本切换到<code>python2</code>，然后奇怪的事情就是默认的python还是Python3，没换到我想要的python2版本，然后后面每次一打开终端都会出现一个<code>ImportError:No module named conda.cli</code>，运行conda也是<code>未发现命令</code></li>
 <li>谷歌一下，上面的ImportError应该是python版本不对的问题导致的，我猜应该是被我切换到了Ubuntu系统自带的Python3（当时应该可以用软连接的方法把python切换到python2的版本，当时没注意，也没想到），最后无奈只好用<code>sudo rm -r ~/opt/anaconda3</code>把anaconda卸载了。然后系统默认的python版本就回到了python2，如果还是python3的话可以用软连接的方法<code>sudo ln -s /usr/bin/python2.7 /usr/bin/python</code>把系统默认的python版本换成了Python2.7。</li>
@@ -233,16 +233,9 @@
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下载坚果云</span></span><br><span class="line">$ wget https://www.jianguoyun.com/static/exe/installer/nutstore_linux_dist_x86.tar.gz</span><br><span class="line"><span class="comment"># 制作目录~/.nutstore/dist，并把上面的包解压到新建的目录里</span></span><br><span class="line">$ mkdir -p ~/.nutstore/dist &amp;&amp; tar zxf nutstore_bin.tar.gz -C ~/.nutstore/dist</span><br><span class="line"><span class="comment"># 安装坚果云菜单和图标</span></span><br><span class="line">$ ~/.nutstore/dist/bin/install_core.sh</span><br></pre></td></tr></table></figure>
 <ul>
-<li>然后在运行<code>~/.nutstore/dist/bin/nutstore-pydaemon.py</code>语句时出现了一个错误，仔细看了下是运行的这个文件<code>nutstore-pydaemon.py</code>的第93行出现了一个返回值<code>Focal</code>不能转换成<code>float</code>的问题，这里的<code>Focal</code>是Ubuntu20.04版本号，估计还是版本兼容的问题，然后<code>gedit ~/.nutstore/dist/bin/nutstore-pydaemon.py</code>打开文件把代码改一下，找到出错的==第93行==把原来的<code>return float(ver) &gt;= 18.04</code>直接改成<code>return True</code>。<blockquote>
-<p>$ ~/.nutstore/dist/bin/nutstore-pydaemon.py<br>&gt;2020-03-23 16:52:40,437 [MainThread] <module> INFO: can’t import appindicator<br>&gt;2020-03-23 16:52:41,253 [MainThread] <module> ERROR: Cannot found expected file manager<br>&gt;Traceback (most recent call last):<br>File “/home/pers/.nutstore/dist/bin/nutstore-pydaemon.py”, line 78, in <module><br>out = subprocess.check_output([“nautilus”, “–version”])<br>File “/usr/lib/python2.7/subprocess.py”, line 223, in check_output<br>raise CalledProcessError(retcode, cmd, output=output)<br>&gt;CalledProcessError: Command ‘[‘nautilus’, ‘–version’]’ returned non-zero exit status -11<br>&gt;Traceback (most recent call last):<br>File “/home/pers/.nutstore/dist/bin/nutstore-pydaemon.py”, line 649, in <module><br>if is_ubuntu_18_or_later():IS_UBUNTU_18=True<br>File “/home/pers/.nutstore/dist/bin/nutstore-pydaemon.py”, <strong>line 93</strong>, in is_ubuntu_18_or_later<br>return float(ver) &gt;= 18.04<br>ValueError: could not convert string to float: Focal</p>
-</blockquote>
-</li>
+<li>然后在运行<code>~/.nutstore/dist/bin/nutstore-pydaemon.py</code>语句时出现了一个错误，仔细看了下是运行的这个文件<code>nutstore-pydaemon.py</code>的第93行出现了一个返回值<code>Focal</code>不能转换成<code>float</code>的问题，这里的<code>Focal</code>是Ubuntu20.04版本号，估计还是版本兼容的问题，然后<code>gedit ~/.nutstore/dist/bin/nutstore-pydaemon.py</code>打开文件把代码改一下，找到出错的==第93行==把原来的<code>return float(ver) &gt;= 18.04</code>直接改成<code>return True</code>。 &gt; $ ~/.nutstore/dist/bin/nutstore-pydaemon.py &gt; &gt;2020-03-23 16:52:40,437 [MainThread] <module> INFO: can't import appindicator &gt; &gt;2020-03-23 16:52:41,253 [MainThread] <module> ERROR: Cannot found expected file manager &gt; &gt;Traceback (most recent call last): &gt; File &quot;/home/pers/.nutstore/dist/bin/nutstore-pydaemon.py&quot;, line 78, in <module> &gt; out = subprocess.check_output([&quot;nautilus&quot;, &quot;--version&quot;]) &gt; File &quot;/usr/lib/python2.7/subprocess.py&quot;, line 223, in check_output &gt; raise CalledProcessError(retcode, cmd, output=output) &gt; &gt;CalledProcessError: Command '['nautilus', '--version']' returned non-zero exit status -11 &gt; &gt;Traceback (most recent call last): &gt; File &quot;/home/pers/.nutstore/dist/bin/nutstore-pydaemon.py&quot;, line 649, in <module> &gt; if is_ubuntu_18_or_later():IS_UBUNTU_18=True &gt; File &quot;/home/pers/.nutstore/dist/bin/nutstore-pydaemon.py&quot;, <strong>line 93</strong>, in is_ubuntu_18_or_later &gt; return float(ver) &gt;= 18.04 &gt; ValueError: could not convert string to float: Focal</li>
 </ul>
-<p><img src="https://img-blog.csdnimg.cn/20200325121955325.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h6eXl1bg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<ul>
-<li>最后还是在这个文件里面把开头的python版本改成系统的python2版本，然后就可以愉快的使用anaconda3和坚果云了，不用担心默认版本不兼容的问题了，然后再把ananconda3重新安装上，具体ananconda3重新安装参考<a href="https://blog.csdn.net/hzyyun/article/details/104762709" target="_blank" rel="noopener">这篇文章</a></li>
-<li>后面我在装好anaconda3的时候我到目录<code>/usr/bin</code>里面用命令<code>ls -all</code>看了一下python指向的默认python版本竟然还是python2，但是我在终端里面运行python的默认版本却是python3，所以怀疑最先一开始通过改python默认版本的方法来安装坚果云是行不通的<br><img src="https://img-blog.csdnimg.cn/20200325125820205.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/2020032511093753.png" alt="在这里插入图片描述"><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2>[1] Ubuntu修改默认Python版本：<a href="https://blog.csdn.net/White_Idiot/article/details/78240298" target="_blank" rel="noopener">https://blog.csdn.net/White_Idiot/article/details/78240298</a><br>[2] Ubuntu 坚果云无法启动:<a href="https://blog.csdn.net/u012435142/article/details/85240356" target="_blank" rel="noopener">https://blog.csdn.net/u012435142/article/details/85240356</a><br>[3] Ubuntu14.04安装坚果云Nutstore:<a href="https://www.xitongjiaocheng.com/ubuntu/2018/61053.html" target="_blank" rel="noopener">https://www.xitongjiaocheng.com/ubuntu/2018/61053.html</a></li>
-</ul>
+<p><img src="https://img-blog.csdnimg.cn/20200325121955325.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h6eXl1bg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" /> - 最后还是在这个文件里面把开头的python版本改成系统的python2版本，然后就可以愉快的使用anaconda3和坚果云了，不用担心默认版本不兼容的问题了，然后再把ananconda3重新安装上，具体ananconda3重新安装参考<a href="https://blog.csdn.net/hzyyun/article/details/104762709" target="_blank" rel="noopener">这篇文章</a> - 后面我在装好anaconda3的时候我到目录<code>/usr/bin</code>里面用命令<code>ls -all</code>看了一下python指向的默认python版本竟然还是python2，但是我在终端里面运行python的默认版本却是python3，所以怀疑最先一开始通过改python默认版本的方法来安装坚果云是行不通的 <img src="https://img-blog.csdnimg.cn/20200325125820205.png" alt="在这里插入图片描述" /> <img src="https://img-blog.csdnimg.cn/2020032511093753.png" alt="在这里插入图片描述" /> ## 参考链接 [1] Ubuntu修改默认Python版本：<a href="https://blog.csdn.net/White_Idiot/article/details/78240298" target="_blank" rel="noopener" class="uri">https://blog.csdn.net/White_Idiot/article/details/78240298</a> [2] Ubuntu 坚果云无法启动:<a href="https://blog.csdn.net/u012435142/article/details/85240356" target="_blank" rel="noopener" class="uri">https://blog.csdn.net/u012435142/article/details/85240356</a> [3] Ubuntu14.04安装坚果云Nutstore:<a href="https://www.xitongjiaocheng.com/ubuntu/2018/61053.html" target="_blank" rel="noopener" class="uri">https://www.xitongjiaocheng.com/ubuntu/2018/61053.html</a></p>
 
     </div>
 
@@ -323,7 +316,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#记录一下"><span class="nav-number">1.</span> <span class="nav-text">记录一下</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">2.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#记录一下"><span class="nav-number">1.</span> <span class="nav-text">记录一下</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -419,7 +412,7 @@
 <script src="/js/schemes/pisces.js"></script>
 
 
-<script src="/js/next-boot.js"></script>
+<script src="/js/next-boot.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 

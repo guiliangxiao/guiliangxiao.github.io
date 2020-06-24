@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-Hans">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.0">
@@ -73,12 +73,12 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -219,13 +219,12 @@
       
         <p>在安装了<code>ubuntu18.04</code>和<code>win8</code>后，<code>win8</code>系统的时间出现了时间不对的问题。</p>
 <a id="more"></a>
-
 <p>在解决这个问题的过程中，参考了网上一些链接，针对自己的问题加了些补充，方便以后自己查看</p>
 <p>环境: <code>ubuntu18.04</code>和<code>win8</code></p>
 <p>win8中存在两个用户，一个Administrator和自己装系统时无意中新建一个用户，Administrator账户在本机上已被禁用，在参考此链接时，发现cmd命令行中提示access denied,原因是对此编辑表编辑权限不足，解决办法:</p>
-<p>regedit-&gt;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\TimeZoneInformation,在左侧TimeZoneInformation文件夹上右击，在permissions中,为当前用户添加full control权限，再在cmd窗口中运行</p>
+<p>regedit-&gt;HKEY_LOCAL_MACHINE,在左侧TimeZoneInformation文件夹上右击，在permissions中,为当前用户添加full control权限，再在cmd窗口中运行</p>
 <blockquote>
-<p>Reg add HKLM\SYSTEM\CurrentControlSet\Control\TimeZoneInformation /v RealTimeIsUniversal /t REG_DWORD /d 1</p>
+<p>Reg add HKLM/v RealTimeIsUniversal /t REG_DWORD /d 1</p>
 </blockquote>
 <p>cmd中提示success之后重启电脑，问题解决</p>
 
@@ -400,7 +399,7 @@
 <script src="/js/schemes/pisces.js"></script>
 
 
-<script src="/js/next-boot.js"></script>
+<script src="/js/next-boot.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 

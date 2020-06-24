@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-Hans">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 4.2.0">
@@ -73,12 +73,12 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -219,13 +219,9 @@
       
         <p>在<code>ubuntu 20.04</code>中安装<code>f.lux</code>，由于官方源没更新到的Ubuntu版本，因此只能用曲折的方法来安装软件。</p>
 <a id="more"></a>
-
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>通过apt安装，但是如果Ubuntu系统版本太新或者apt更新的时候出现404错误这种安装办法就行不通了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:nathan-renniewaldock/flux</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install fluxgui</span><br></pre></td></tr></table></figure>
-
-<p>如果Ubuntu系统版本太新不能通过apt安装，就可以通过下面的办法来安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看Python版本</span></span><br><span class="line">$ python</span><br><span class="line"><span class="comment"># 安装依赖(python3版)</span></span><br><span class="line">$ sudo apt-get install python3-distutils gir1.2-appindicator3-0.1 gir1.2-gtk-3.0</span><br><span class="line"><span class="comment"># 安装依赖(python2版)</span></span><br><span class="line">$ sudo apt-get install git python-appindicator python-xdg python-pexpect python-gconf python-gtk2 python-glade2 libxxf86vm1  libcanberra-gtk-module</span><br></pre></td></tr></table></figure>
-<h2 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h2><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>[1]官方安装、卸载教程：<a href="https://github.com/xflux-gui/fluxgui" target="_blank" rel="noopener">https://github.com/xflux-gui/fluxgui</a></p>
+<h2 id="安装">安装</h2>
+<p>通过apt安装，但是如果Ubuntu系统版本太新或者apt更新的时候出现404错误这种安装办法就行不通了。 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:nathan-renniewaldock/flux</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install fluxgui</span><br></pre></td></tr></table></figure></p>
+<p>如果Ubuntu系统版本太新不能通过apt安装，就可以通过下面的办法来安装 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看Python版本</span></span><br><span class="line">$ python</span><br><span class="line"><span class="comment"># 安装依赖(python3版)</span></span><br><span class="line">$ sudo apt-get install python3-distutils gir1.2-appindicator3-0.1 gir1.2-gtk-3.0</span><br><span class="line"><span class="comment"># 安装依赖(python2版)</span></span><br><span class="line">$ sudo apt-get install git python-appindicator python-xdg python-pexpect python-gconf python-gtk2 python-glade2 libxxf86vm1  libcanberra-gtk-module</span><br></pre></td></tr></table></figure> ## 卸载 ## 参考链接 [1]官方安装、卸载教程：<a href="https://github.com/xflux-gui/fluxgui" target="_blank" rel="noopener" class="uri">https://github.com/xflux-gui/fluxgui</a></p>
 
     </div>
 
@@ -306,7 +302,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#卸载"><span class="nav-number">2.</span> <span class="nav-text">卸载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">3.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -402,7 +398,7 @@
 <script src="/js/schemes/pisces.js"></script>
 
 
-<script src="/js/next-boot.js"></script>
+<script src="/js/next-boot.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 
