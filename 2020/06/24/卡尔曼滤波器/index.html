@@ -26,13 +26,13 @@
 <meta property="og:url" content="http://yoursite.com/2020/06/24/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2%E5%99%A8/index.html">
 <meta property="og:site_name" content="GuiLiang&#39;s Blog">
 <meta property="og:description" content="之前做的一个关于滤波器的笔记">
-<meta property="og:image" content="e:/HomePage/source/images/Post%20Imags/卡曼滤波器/Image_1.png">
-<meta property="og:image" content="e:/HomePage/source/images/Post%20Imags/卡曼滤波器/Image_2.png">
+<meta property="og:image" content="http://yoursite.com/.com//HomePage/source/images/Post%20Imags/%E5%8D%A1%E6%9B%BC%E6%BB%A4%E6%B3%A2%E5%99%A8/Image_1.png">
+<meta property="og:image" content="http://yoursite.com/.com//HomePage/source/images/Post%20Imags/%E5%8D%A1%E6%9B%BC%E6%BB%A4%E6%B3%A2%E5%99%A8/Image_2.png">
 <meta property="article:published_time" content="2020-06-24T11:21:06.000Z">
-<meta property="article:modified_time" content="2020-06-24T13:00:24.583Z">
+<meta property="article:modified_time" content="2020-06-24T13:24:36.138Z">
 <meta property="article:author" content="Xiao Guiliang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="e:/HomePage/source/images/Post%20Imags/卡曼滤波器/Image_1.png">
+<meta name="twitter:image" content="http://yoursite.com/.com//HomePage/source/images/Post%20Imags/%E5%8D%A1%E6%9B%BC%E6%BB%A4%E6%B3%A2%E5%99%A8/Image_1.png">
 
 <link rel="canonical" href="http://yoursite.com/2020/06/24/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2%E5%99%A8/">
 
@@ -153,6 +153,7 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
 
 
     <main class="main">
@@ -191,7 +192,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-06-24 19:21:06 / 修改时间：21:00:24" itemprop="dateCreated datePublished" datetime="2020-06-24T19:21:06+08:00">2020-06-24</time>
+              <time title="创建时间：2020-06-24 19:21:06 / 修改时间：21:24:36" itemprop="dateCreated datePublished" datetime="2020-06-24T19:21:06+08:00">2020-06-24</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -258,7 +259,7 @@ P_{k+1}^- = A_k P_k A_k^T + Q_k
 <h3 id="阶段二correct-measurement-update">阶段二：Correct / Measurement Update</h3>
 <p>这一步主要是在获得测量值后对上一步的预测值进行校正，产生更加准确的估计值。如下图所示，红色的高斯分布为上一步预估值的分布，绿色的高斯分布为仪器测量值的分布，蓝色的才是新的真正的值的分布。</p>
 <div class="figure">
-<img src="E:\HomePage\source\images\Post%20Imags\卡曼滤波器\Image_1.png" />
+<img src="/.com//HomePage\source\images\Post%20Imags\卡曼滤波器\Image_1.png">
 
 </div>
 <ul>
@@ -277,10 +278,11 @@ K_k = P_k^-H_k^T(H_k P_k^- H_k^T + R_k)^{-1}
 </ul>
 <p><span class="math inline">\(H_k P_k^- H_k^T\)</span>把预测阶段的高斯分布的方差转换到新的高斯分布。 * 其中，<span class="math inline">\(H_k\)</span>为<strong>状态空间转换系数</strong>，目的是把系统的物理状态转换到跟测量设备（传感器）一样的空间，方便在同一维度下比较； <span class="math inline">\(R_k\)</span>为测量的不确定度，即测量值的高斯分布的方差；</p>
 <h3 id="总结">总结</h3>
-<p>最后总结下，每个阶段的流程和所用到的参数： <img src="E:\HomePage\source\images\Post%20Imags\卡曼滤波器\Image_2.png" /></p>
+<p>最后总结下，每个阶段的流程和所用到的参数： <img src="/.com//HomePage\source\images\Post%20Imags\卡曼滤波器\Image_2.png"></p>
 <ul>
-<li>参考链接： [1] 图说卡尔曼滤波，一份通俗易懂的教程: <a href="https://zhuanlan.zhihu.com/p/39912633" target="_blank" rel="noopener" class="uri">https://zhuanlan.zhihu.com/p/39912633</a> [2] 浅析卡尔曼滤波算法: <a href="https://www.cnblogs.com/rouwawa/p/11643850.html" target="_blank" rel="noopener" class="uri">https://www.cnblogs.com/rouwawa/p/11643850.html</a></li>
+<li>参考链接： [1] 图说卡尔曼滤波，一份通俗易懂的教程: <a href="https://zhuanlan.zhihu.com/p/39912633" target="_blank" rel="noopener" class="uri">https://zhuanlan.zhihu.com/p/39912633</a></li>
 </ul>
+<p>[2] 浅析卡尔曼滤波算法: <a href="https://www.cnblogs.com/rouwawa/p/11643850.html" target="_blank" rel="noopener" class="uri">https://www.cnblogs.com/rouwawa/p/11643850.html</a></p>
 
     </div>
 
@@ -457,7 +459,7 @@ K_k = P_k^-H_k^T(H_k P_k^- H_k^T + R_k)^{-1}
 <script src="/js/schemes/pisces.js"></script>
 
 
-<script src="/js/next-boot.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="/js/next-boot.js"></script>
 
 
 
@@ -479,6 +481,61 @@ K_k = P_k^-H_k^T(H_k P_k^- H_k^T + R_k)^{-1}
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
 
   
 

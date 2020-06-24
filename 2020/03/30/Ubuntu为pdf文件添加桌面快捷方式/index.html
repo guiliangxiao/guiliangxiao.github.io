@@ -153,6 +153,7 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
 
 
     <main class="main">
@@ -226,10 +227,10 @@
 <p>Ubuntu20.04，<a href="https://www.foxitsoftware.cn/pdf-reader/" target="_blank" rel="noopener">福昕阅读器Linux版</a></p>
 <h2 id="步骤">步骤：</h2>
 <ol style="list-style-type: decimal">
-<li>找到福昕阅读器的安装地址，一般会默认安装在<code>~/opt/foxitsoftware/foxitreader</code>目录，在该目录下找到<code>FoxitReader</code>文件（没有后缀名的那个），可以再用命令检查一下有没有找对 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ~/opt/foxitsoftware/foxitreader/FoxitReader</span><br></pre></td></tr></table></figure> 运行上面的命令会打开福昕阅读器 <img src="https://img-blog.csdnimg.cn/20200313230641242.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h6eXl1bg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" /></li>
+<li>找到福昕阅读器的安装地址，一般会默认安装在<code>~/opt/foxitsoftware/foxitreader</code>目录，在该目录下找到<code>FoxitReader</code>文件（没有后缀名的那个），可以再用命令检查一下有没有找对 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ~/opt/foxitsoftware/foxitreader/FoxitReader</span><br></pre></td></tr></table></figure> 运行上面的命令会打开福昕阅读器 <img src="https://img-blog.csdnimg.cn/20200313230641242.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h6eXl1bg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></li>
 <li>然后<code>FoxitReader</code>命令添加到系统的<code>.bashrc</code>中去，下次就可以在命令行里执行<code>FoxitReader</code>直接可以打开软件了 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo gedit ~/.bashrc</span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">'export PATH="/home/pers/opt/foxitsoftware/foxitreader/:$PATH"'</span>&gt;&gt;~/.bashrc</span><br><span class="line">$ <span class="built_in">source</span> .bashrc</span><br></pre></td></tr></table></figure></li>
 <li><p>进入桌面，创建桌面快捷方式，并且把下面的内容拷贝到<code>mypdf.desktop</code>文件中去，保存退出 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> ~/Desktop</span><br><span class="line">$ gedit mypdf.desktop</span><br></pre></td></tr></table></figure> &gt; [Desktop Entry] &gt; Encoding=UTF-8 &gt; Type=Application &gt; Name=Tutorials4.pdf &gt; Exec=FoxitReader 'file:///home/myhomefolder/mypdf.pdf#page=45' &gt; Icon=~/opt/foxitsoftware/foxitreader/images/FoxitReader-64x64.ico &gt; Terminal=false &gt; StartupNotify=true</p></li>
-<li><p>然后在<code>mypdf.desktop</code>文件的属性中选中==允许文件以程序运行==，最后右击文件选择==Allow Launching==。 <img src="https://img-blog.csdnimg.cn/20200313230718472.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h6eXl1bg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" /> ## 示例 &gt; [Desktop Entry] &gt; Encoding=UTF-8 &gt; Type=Application &gt; Name=自底向上简明入门.pdf &gt; Exec=FoxitReader 'file:///media/pers/数据/EndNote Library/My EndNote Library.Data/PDF/2565599002/Tensorflow Federated Framework：自底向上简明入门.pdf' &gt; Icon=~/opt/foxitsoftware/foxitreader/images/FoxitReader-64x64.ico &gt; Terminal=false &gt; StartupNotify=true</p></li>
+<li><p>然后在<code>mypdf.desktop</code>文件的属性中选中==允许文件以程序运行==，最后右击文件选择==Allow Launching==。 <img src="https://img-blog.csdnimg.cn/20200313230718472.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2h6eXl1bg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"> ## 示例 &gt; [Desktop Entry] &gt; Encoding=UTF-8 &gt; Type=Application &gt; Name=自底向上简明入门.pdf &gt; Exec=FoxitReader 'file:///media/pers/数据/EndNote Library/My EndNote Library.Data/PDF/2565599002/Tensorflow Federated Framework：自底向上简明入门.pdf' &gt; Icon=~/opt/foxitsoftware/foxitreader/images/FoxitReader-64x64.ico &gt; Terminal=false &gt; StartupNotify=true</p></li>
 </ol>
 <h2 id="参考链接">参考链接：</h2>
 <p>[1]： <a href="https://askubuntu.com/questions/1128328/is-it-possible-to-use-desktop-files-to-open-local-pdf-files-on-specific-pages-w" target="_blank" rel="noopener">建立桌面快捷方式并使用Firefox打开pdf文件</a> [2]： <a href="https://blog.csdn.net/bupt073114/article/details/46514253" target="_blank" rel="noopener">Ubuntu怎么在桌面上添加应用图标</a></p>
@@ -429,6 +430,8 @@
 
 
 
+
+  
 
   
 
